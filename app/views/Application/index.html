@@ -1,10 +1,10 @@
 #{extends 'main.html' /}
 #{set title:'procastinator' /}
 
-#{if topicList}
+#{if finalLinks}
     <ul>
-    #{list items:topicList, as:'topic'}
-        <li>${topic}</li>
+    #{list items:finalLinks.keySet(), as:'title'}
+        <li>${title}  :   ${finalLinks.get(finalLinks)}</li>
     #{/list}
     </ul>
 #{/if}

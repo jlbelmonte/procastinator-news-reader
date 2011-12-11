@@ -1,5 +1,6 @@
 package controllers;
 
+import org.htmlcleaner.TagNode;
 import play.Play;
 import play.mvc.Controller;
 import siena.Json;
@@ -22,7 +23,6 @@ public class Application extends Controller {
 	}
 	
 	public static void askTopicsAndArticles(String twitterUser){
-		System.out.println("asking");
 		String  apiKey = Play.configuration.getProperty("klout.key");
 		Json userInfo = Json.map();
 		try {
@@ -61,8 +61,35 @@ public class Application extends Controller {
 				topicList.add(topic.str());
 			}
 		}
-		render("Application/index.html", topicList);
-		renderArgs.put("topics", topicList);
 
+		Map<String, String> finalLinks = new HashMap<String, String>();
+		System.out.println(topicList);
+		for (String topic : topicList){
+			topic = topic.replace(" ", "-");
+			String url ="http://delicious.com/search?p="+topic;
+			System.out.println(url);
+			try{
+				TagNode html = URLHelper.fetchUrl(url, -1);
+				////div[@id='profile']/img[@class='avatar']"
+				Object[] links = html.evaluateXPath("ul[@id='srch1-bookmarklist']/li/div[@class='data']/h4/a");
+				if (links == null ) continue;
+				TagNode link1 = (TagNode) links[0];
+
+				finalLinks.put(link1.getAttributeByName("title"), link1.getAttributeByName("href"));
+
+
+				TagNode link2 = (TagNode) links[1];
+				finalLinks.put(link2.getAttributeByName("title"), link2.getAttributeByName("href"));
+
+
+				TagNode link3 = (TagNode) links[2];
+				finalLinks.put(link3.getAttributeByName("title"), link3.getAttributeByName("href"));
+			} catch (Exception e){
+				index();
+				e.printStackTrace();
+			}
+			System.out.println(url);
+		}
+		render("Application/index.html", finalLinks);
 		}
 }
