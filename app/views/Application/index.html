@@ -2,23 +2,39 @@
 #{set title:'procastinator' /}
 
 <div class="container">
+    <div class="row" >
+
+    </div>
     <div class="row">
         <div class="span12 offset2">
         #{if finalLinks}
-        <ul>
-            #{list items:finalLinks.keySet(), as:'title'}
-             <li>
-                 <a target="_blank" href="${finalLinks.get(title)}">${title}</a>
-             </li>
-             #{/list}
-        </ul>
+        <div style="margin-top:10%; margin-left:5%">
+            <h2> Based on your influencers topics,</h2>
+            <h6>we found this for you in Reddit </h6>
+            <br />
+            <ul class="unstyled">
+                 #{list items:finalLinks.keySet(), as:'title'}
+                <li style="margin:3px">
+                    <span>
+                        <a target="_blank" href="${finalLinks.get(title).get(0)}">${title}</a>.
+                        <a target="_blank" href="${finalLinks.get(title).get(1)}">Comments</a>
+                    </span>
+                </li>
+                <br />
+                #{/list}
+             </ul>
+        </div>
         #{/if}
         #{else}
-        <form action="@@{Application.askTopicsAndArticles}">
-            <input type="text" name="twitterUser"/>
-            <input type="submit">I want to read</input>
-        </form>
-        #{/else}
+        <div style="margin-top:30%; margin-left:25%">
+            <h1>ಠ_ಠ</h1>
+            <form action="@@{Application.askTopicsAndArticles}" class="center_">
+                <input type="text" class="xlarge" name="twitterUser"/>
+                <button type="submit" class="btn primary xlarge">Do it</button>
+            </form>
+            <span class="small" >powered by</span> <img src="https://mb-misc.s3.amazonaws.com/klout.png" title="Klout" width="80px" class="valign-bottom" />
+        </div>
+            #{/else}
         </div>
     </div>
 </div>

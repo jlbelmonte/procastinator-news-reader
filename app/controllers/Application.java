@@ -9,6 +9,7 @@ import utils.URLHelper;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -62,7 +63,8 @@ public class Application extends Controller {
 			}
 		}
 
-		Map<String, String> finalLinks = new HashMap<String, String>();
+
+		Map<String, List<String>> finalLinks = new HashMap<String, List<String>>();
 		for (String topic : topicList){
 			topic = topic.replace(" ", "-");
 			finalLinks.putAll(RedditHelper.searchDelicious(topic));
