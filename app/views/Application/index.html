@@ -1,4 +1,16 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'procastinator' /}
 
-#{welcome /}
+#{if topicList}
+    <ul>
+    #{list items:topicList, as:'topic'}
+        <li>${topic}</li>
+    #{/list}
+    </ul>
+#{/if}
+#{else}
+ <form action="@@{Application.askTopicsAndArticles}">
+     <input type="text" name="twitterUser"/>
+     <input type="submit">I want to read</input>
+ </form>
+#{/else}
