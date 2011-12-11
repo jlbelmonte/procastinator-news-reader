@@ -16,7 +16,6 @@ public class RedditHelper {
 
 
 			if (links == null) return searchResults;
-			System.out.println(links.length);
 			TagNode link1 = (TagNode) links[0];
 			if (link1 == null) return  searchResults;
 			String title = new String(link1.getText());
