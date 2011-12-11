@@ -20,7 +20,7 @@ public class URLHelper {
 			URL u = new URL(url);
 			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 			try{
-			conn.setRequestProperty("user-agent", "want-to-read");
+			conn.setRequestProperty("user-agent", "TinyBrowser/2.0 (TinyBrowser Comment; rv:1.9.1a2pre) Gecko/20201231");
 			if (conn.getResponseCode() == 200) {
 				InputStream in = conn.getInputStream();
 
@@ -47,7 +47,7 @@ public class URLHelper {
 	public static TagNode fetchUrl(String url, int timeout) throws Exception {
 			HtmlCleaner cleaner = new HtmlCleaner();
 			HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-			conn.setRequestProperty("user-agent", "procastinator-app");
+			conn.setRequestProperty("user-agent", "TinyBrowser/2.0 (TinyBrowser Comment; rv:1.9.1a2pre) Gecko/20201231");
 			if(timeout > 0) {
 				conn.setConnectTimeout(timeout);
 				conn.setReadTimeout(timeout);
