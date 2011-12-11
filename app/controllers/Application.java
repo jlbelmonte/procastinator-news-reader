@@ -4,14 +4,11 @@ import play.Play;
 import play.mvc.Controller;
 import siena.Json;
 import utils.Constants;
-import utils.ListUtils;
 import utils.RedditHelper;
 import utils.URLHelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,7 +61,6 @@ public class Application extends Controller {
 				topicList.add(topic.str());
 			}
 		}
-		topicList = get5(topicList);
 
 		Map<String, String> finalLinks = new HashMap<String, String>();
 		for (String topic : topicList){
@@ -75,11 +71,5 @@ public class Application extends Controller {
 
 	}
 
- private static Set<String> get5(Set<String> allTopics){
-	 if (allTopics.size() <=5) return  allTopics;
-	 List<String> topics = new ArrayList<String>(allTopics);
-	 ListUtils.shuffleList(topics);
-	 return new HashSet<String>(topics.subList(0,4));
 
-	}
 }
