@@ -15,7 +15,7 @@ public class RedditHelper {
 			Object[] links = html.evaluateXPath("//p[@class='title']/a");
 
 
-			if (links == null) return searchResults;
+			if (links == null || links.length == 0) return searchResults;
 			TagNode link1 = (TagNode) links[0];
 			if (link1 == null) return  searchResults;
 			String title = new String(link1.getText());

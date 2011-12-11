@@ -1,16 +1,24 @@
 #{extends 'main.html' /}
 #{set title:'procastinator' /}
 
-#{if finalLinks}
-    <ul>
-    #{list items:finalLinks.keySet(), as:'title'}
-        <li>${title}  :   ${finalLinks.get(title)}</li>
-    #{/list}
-    </ul>
-#{/if}
-#{else}
- <form action="@@{Application.askTopicsAndArticles}">
-     <input type="text" name="twitterUser"/>
-     <input type="submit">I want to read</input>
- </form>
-#{/else}
+<div class="container">
+    <div class="row">
+        <div class="span12 offset2">
+        #{if finalLinks}
+        <ul>
+            #{list items:finalLinks.keySet(), as:'title'}
+             <li>
+                 <a target="_blank" href="${finalLinks.get(title)}">${title}</a>
+             </li>
+             #{/list}
+        </ul>
+        #{/if}
+        #{else}
+        <form action="@@{Application.askTopicsAndArticles}">
+            <input type="text" name="twitterUser"/>
+            <input type="submit">I want to read</input>
+        </form>
+        #{/else}
+        </div>
+    </div>
+</div>
